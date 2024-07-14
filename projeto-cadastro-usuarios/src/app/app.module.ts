@@ -8,6 +8,7 @@ import { AngularMaterial } from './angular-material.module';
 import { ComponentsModule } from './components/components.module';
 import { DirectivesModule } from './directives/directives.module';
 import { PipesModule } from './pipes/pipes.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { PipesModule } from './pipes/pipes.module';
     ComponentsModule,
     DirectivesModule,
     PipesModule,
+    HttpClientModule,
   ],
   providers: [
     provideClientHydration(),
