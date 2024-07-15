@@ -9,6 +9,7 @@ import { ComponentsModule } from './components/components.module';
 import { DirectivesModule } from './directives/directives.module';
 import { PipesModule } from './pipes/pipes.module';
 import { HttpClientModule } from '@angular/common/http';
+import { FormControl, FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     DirectivesModule,
     PipesModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [
     provideClientHydration(),

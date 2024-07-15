@@ -5,7 +5,7 @@ export interface IPerson {
 
 interface IUser {
     name:string,
-    user:string,
+    user?:string,
     email:string,
     password:string,
     passwordConfirm:string,
