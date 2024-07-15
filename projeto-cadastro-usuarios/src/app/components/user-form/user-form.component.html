@@ -1,1 +1,3 @@
-<p>user-form works!</p>
+<div class="form">
+    <app-users-card-list *ngIf="(UsersList | async) as usersList" [users]="usersList"></app-users-card-list>
+</div>
