@@ -1,5 +1,5 @@
 <div class="card-user-list">
-    <mat-card *ngFor="let user of users" class="card-user">
+    <mat-card *ngFor="let user of usersList | async" (click)="onUserEmitter(user)" class="card-user">
         <mat-card-header>
             <mat-card-title> {{ user?.user?.name }} </mat-card-title>
             <mat-card-subtitle> {{ user?.user?.email }} </mat-card-subtitle>

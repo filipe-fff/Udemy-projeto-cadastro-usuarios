@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, ViewChild } from '@angular/core';
 import { IPerson } from '../../interfaces/IUser';
 import { UserService } from '../../services/user.service';
 import { Observable } from 'rxjs';
@@ -15,17 +15,16 @@ import {provideNativeDateAdapter} from '@angular/material/core';
   ]
 })
 export class UserFormComponent implements OnInit, OnChanges {
-    UsersList!:Observable<IPerson[]>;
-    user!:IPerson;
+    @ViewChild('form_register') form!:IPerson;
+    displayColumnsMusic:string[] = ["Título", "Banda", "Gênero", "Favorita"];
     
-
-    constructor(
-      private readonly _usersListObsercable:UserService
-    ) {}
     ngOnInit() {
-      this.UsersList = this._usersListObsercable.getUser();
+      
     }
     ngOnChanges() {
+      
+    }
+    onUser(user:IPerson) {
       
     }
     onSubmit(userForm:IPerson) {
