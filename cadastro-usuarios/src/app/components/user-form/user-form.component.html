@@ -1,0 +1,94 @@
+<form class="form">
+    <div class="form__row">
+        <div class="form__item form__item-100">
+            <mat-form-field class="form__input">
+                <mat-label>Nome:</mat-label>
+                <input
+                    matInput
+                    [(ngModel)]="userSelected.name"
+                    type="text"
+                    name="nome"
+                    required
+                >
+            <mat-error>
+                O <strong>Nome</strong> é obrigatório.
+            </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="form__row">
+        <div class="form__item form__item-50">
+            <mat-form-field class="form__input">
+                <mat-label>Usuário:</mat-label>
+                <input 
+                    matInput
+                    ngModel
+                    [(ngModel)]="userSelected.username"
+                    #userNameControl="ngModel"
+                    type="text"
+                    name="usuario"
+                    appInvalidUserName
+                    required
+                >
+            <mat-error *ngIf="userNameControl.hasError('required')">
+                O <strong>Nome de Usuário</strong> é obrigatório.
+            </mat-error>
+            <mat-error *ngIf="userNameControl.hasError('invalidUserPlaceholder')">
+                Este <strong>Usuário</strong> já existe.
+            </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form__item form__item-50">
+            <mat-form-field class="form__input">
+                <mat-label>E-mail:</mat-label>
+                <input 
+                    matInput 
+                    type="email"
+                    ngModel
+                    [(ngModel)]="userSelected.email"
+                    #emailControl="ngModel"
+                    name="email"
+                    appInvalidEmail
+                    required
+                >
+            <mat-error *ngIf="emailControl.hasError('required')">
+                O <strong>E-mail</strong> é obrigatório.
+            </mat-error>
+            <mat-error *ngIf="emailControl.hasError('invalidEmail')">
+                O <strong>E-mail</strong> está errado.
+            </mat-error>
+            <mat-error *ngIf="emailControl.hasError('invalidEmailPattern')">
+                Este <strong>E-mail</strong> já existe.
+            </mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="form__row">
+        <div class="form__item form__item-50">
+            <mat-form-field class="form__input">
+                <mat-label></mat-label>
+                <input matInput type="text">
+            </mat-form-field>
+        </div>
+        <div class="form__item form__item-50">
+            <mat-form-field class="form__input">
+                <mat-label></mat-label>
+                <input matInput type="text">
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="form__row">
+        <div class="form__item form__item-50">
+            <mat-form-field class="form__input">
+                <mat-label></mat-label>
+                <input matInput type="text">
+            </mat-form-field>
+        </div>
+        <div class="form__item form__item-50">
+            <mat-form-field class="form__input">
+                <mat-label></mat-label>
+                <input matInput type="text">
+            </mat-form-field>
+        </div>
+    </div>
+</form>

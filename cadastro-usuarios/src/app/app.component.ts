@@ -20,6 +20,8 @@ export class AppComponent implements OnInit {
   genresList!: IGenre[];
   statesList!: IState[];
   usersPlaceholderList!: IUserPlaceholder[];
+  userIndex!:number;
+  userSelected:IUser = {} as IUser;
 
 
   constructor(
@@ -30,17 +32,15 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+
     this.getUsers();
     this.getGenres();
     this.getStates();
-    this.getUsersPlaceholder();
 
-    console.log(this.usersList);
-    console.log(this.genresList);
-    console.log(this.statesList);
   }
 
   private getUsers() {
+
     this._usersService.getUsersList().subscribe(( usersListResponse) => 
       {
         this.usersList = usersListResponse;
@@ -56,5 +56,14 @@ export class AppComponent implements OnInit {
     this._statesService.getStatesList().subscribe( (statesListResponse) => {
       this.statesList = statesListResponse;
     } );
+  }
+
+  onUserSelected(userId:number) {
+      // pega o usuario pelo id
+      if(this.usersList[userId]){
+        this.userIndex = userId;
+        this.userSelected = structuredClone(this.usersList[userId]);
+        console.log(this.userSelected);
+      }
   }
 }
