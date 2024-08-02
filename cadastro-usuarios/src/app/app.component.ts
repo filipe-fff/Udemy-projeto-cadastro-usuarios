@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { UsersPlaceholderListService } from './services/users-placeholder-list.service';
 import { Observable } from 'rxjs';
 import { UsersService } from './services/users.service';
@@ -14,7 +14,7 @@ import { IUserPlaceholder } from './interfaces/user-placeholder/user-placeholder
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit{
   
   usersList!: IUser[];
   genresList!: IGenre[];

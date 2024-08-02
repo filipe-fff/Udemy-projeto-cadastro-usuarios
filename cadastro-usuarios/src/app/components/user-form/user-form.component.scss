@@ -21,4 +21,24 @@
     &__input {
         width: 100%;
     }
+
+}
+
+.form .progressBar {
+
+    &__red {
+        ::ng-deep &.mat-mdc-progress-bar.mat-primary {
+            --mdc-linear-progress-active-indicator-color: #ee0000 !important;
+        }
+    }
+    &__yellow {
+        ::ng-deep &.mat-mdc-progress-bar.mat-primary {
+            --mdc-linear-progress-active-indicator-color: #eeee00 !important;
+        }
+    }
+    &__green {
+        ::ng-deep &.mat-mdc-progress-bar.mat-primary {
+            --mdc-linear-progress-active-indicator-color: #00ee00 !important;
+        }
+    }
 }
