@@ -36,7 +36,6 @@ export class AppComponent implements OnInit{
     this.getUsers();
     this.getGenres();
     this.getStates();
-
   }
 
   private getUsers() {
