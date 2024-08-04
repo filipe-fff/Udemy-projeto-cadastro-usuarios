@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnChanges } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnChanges, Output } from '@angular/core';
 import { IUser } from '../../interfaces/user/user.interface';
 import { getProgressBarValue } from '../../utils/getProgressBarValue';
 import { provideNativeDateAdapter } from '@angular/material/core';
@@ -20,6 +20,7 @@ export class UserFormComponent implements OnChanges {
   @Input() statesList:IState[] = [];
   @Input() genresList:IGenre[] = [];
   @Input() genresListFilter:IGenre[] = [];
+  @Output() userFormEmitter: EventEmitter<IUser> =  new EventEmitter<IUser>();
 
 
   progressBarValue:number = 0;
@@ -40,11 +41,17 @@ export class UserFormComponent implements OnChanges {
     this.genresListFilter = this.genresList;
   }
 
-  // envia o formulario
+  // envia o formulario.
   onFormSubmit(form:NgForm) {
-    if(form.invalid) this.OnInvalidForm(form);
+    if(form.invalid) {
+      this.OnInvalidForm(form);
+      return;
+    };
+
+    this.userFormEmitter.emit(this.userSelected);
   }
 
+  // encontra o campo invalido.
   OnInvalidForm(form:NgForm) {
     for( const control of Object.keys(form.controls) ) {
       if( form.controls[control].invalid ) {

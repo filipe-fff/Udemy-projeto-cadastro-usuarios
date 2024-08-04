@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, ChangeDetectionStrategy, inject } from '@angular/core';
 import { UsersPlaceholderListService } from './services/users-placeholder-list.service';
 import { Observable } from 'rxjs';
 import { UsersService } from './services/users.service';
@@ -8,6 +8,10 @@ import { IGenre } from './interfaces/genre.interface';
 import { IState } from './interfaces/state.interface';
 import { StatesService } from './services/states.service';
 import { IUserPlaceholder } from './interfaces/user-placeholder/user-placeholder.interface';
+import { MatDialog } from '@angular/material/dialog';
+import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
+import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-root',
@@ -22,6 +26,7 @@ export class AppComponent implements OnInit{
   usersPlaceholderList!: IUserPlaceholder[];
   userIndex!:number;
   userSelected:IUser = {} as IUser;
+  userDialog = inject(MatDialog);
 
 
   constructor(
@@ -34,8 +39,8 @@ export class AppComponent implements OnInit{
   ngOnInit() {
 
     this.getUsers();
-    this.getGenres();
-    this.getStates();
+    this.getUserGenres();
+    this.getUserStates();
   }
 
   private getUsers() {
@@ -46,15 +51,25 @@ export class AppComponent implements OnInit{
       }
     );
   }
-  private getGenres() {
+  private getUserGenres() {
     this._genresService.getGenresList().subscribe(( genresListResponse ) => {
       this.genresList = genresListResponse;
     })
   }
-  private getStates() {
+  private getUserStates() {
     this._statesService.getStatesList().subscribe( (statesListResponse) => {
       this.statesList = statesListResponse;
     } );
+  }
+  private getUserDialog() {
+    this.userDialog.open(UserDialogComponent, {
+      width: '500px',
+      height: '500px',
+      data: {
+        userBefore: this.usersList[this.userIndex],
+        userAfter: this.userSelected,
+      }
+    });
   }
 
   onUserSelected(userId:number) {
@@ -62,7 +77,11 @@ export class AppComponent implements OnInit{
       if(this.usersList[userId]){
         this.userIndex = userId;
         this.userSelected = structuredClone(this.usersList[userId]);
-        console.log(this.userSelected);
       }
+  }
+  onUserFormEmitter(form:IUser) {
+    this.userSelected = form;
+
+    this.getUserDialog();
   }
 }

@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { DirectivesModule } from '../directives/directives.module';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { UserDialogComponent } from './user-dialog/user-dialog.component';
 
 registerLocaleData( localePt, 'pt-br' );
 
@@ -23,10 +24,12 @@ registerLocaleData( localePt, 'pt-br' );
   declarations: [
     UsersListComponent,
     UserFormComponent,
+    UserDialogComponent,
   ],
   exports: [
     UsersListComponent,
     UserFormComponent,
+    UserDialogComponent,
     AngularMaterialModule,
     DirectivesModule,
   ],
