@@ -1,6 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges, ChangeDetectionStrategy, inject } from '@angular/core';
 import { UsersPlaceholderListService } from './services/users-placeholder-list.service';
-import { Observable } from 'rxjs';
 import { UsersService } from './services/users.service';
 import { IUser } from './interfaces/user/user.interface';
 import { GenresService } from './services/genres.service';
@@ -10,7 +9,6 @@ import { StatesService } from './services/states.service';
 import { IUserPlaceholder } from './interfaces/user-placeholder/user-placeholder.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
-import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -63,7 +61,7 @@ export class AppComponent implements OnInit{
   }
   private getUserDialog() {
     this.userDialog.open(UserDialogComponent, {
-      width: '500px',
+      width: '900px',
       height: '500px',
       data: {
         userBefore: this.usersList[this.userIndex],
