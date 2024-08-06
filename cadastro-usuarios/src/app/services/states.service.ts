@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class StatesService {
 
+  stateDescription:string|undefined;
   private readonly statesList:IState[] = [
     { id: 12, descricao: 'Acre', descricaoContraida: 'AC' },
     { id: 27, descricao: 'Alagoas', descricaoContraida: 'AL' },
@@ -42,5 +43,12 @@ export class StatesService {
       observable.next(this.statesList);
       observable.complete();
     } );
+  }
+  getStateDescription(stateID:number):string|null {
+    this.getStatesList().subscribe( ( states ) => {
+      this.stateDescription = states.find( ( state ) => state.id === stateID )?.descricao;
+    } );
+    
+    return this.stateDescription? this.stateDescription:'';
   }
 }

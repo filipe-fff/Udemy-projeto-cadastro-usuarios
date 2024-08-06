@@ -8,9 +8,10 @@ import { DirectivesModule } from '../directives/directives.module';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { UserDialogComponent } from './user-dialog/user-dialog.component';
+import { PipesModule } from '../pipes/pipes.module';
+
 
 registerLocaleData( localePt, 'pt-br' );
-
 
 
 @NgModule({
@@ -18,7 +19,8 @@ registerLocaleData( localePt, 'pt-br' );
     CommonModule,
     AngularMaterialModule,
     FormsModule,
-    DirectivesModule
+    DirectivesModule,
+    PipesModule,
     
   ],
   declarations: [
@@ -32,6 +34,7 @@ registerLocaleData( localePt, 'pt-br' );
     UserDialogComponent,
     AngularMaterialModule,
     DirectivesModule,
+    PipesModule,
   ],
   providers: [
     {

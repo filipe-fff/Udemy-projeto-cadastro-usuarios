@@ -24,7 +24,6 @@ export class AppComponent implements OnInit{
   usersPlaceholderList!: IUserPlaceholder[];
   userIndex!:number;
   userSelected:IUser = {} as IUser;
-  userDialog = inject(MatDialog);
 
 
   constructor(
@@ -32,6 +31,7 @@ export class AppComponent implements OnInit{
     private readonly _genresService: GenresService,
     private readonly _statesService: StatesService,
     private readonly _usersPlaceholderServise: UsersPlaceholderListService,
+    private readonly _matDialog:MatDialog
   ) {}
 
   ngOnInit() {
@@ -60,7 +60,7 @@ export class AppComponent implements OnInit{
     } );
   }
   private getUserDialog() {
-    this.userDialog.open(UserDialogComponent, {
+    const userDialog = this._matDialog.open(UserDialogComponent, {
       width: '900px',
       height: '500px',
       data: {
@@ -68,6 +68,9 @@ export class AppComponent implements OnInit{
         userAfter: this.userSelected,
       }
     });
+    userDialog.afterClosed().subscribe( () => {
+      this.usersList[this.userIndex] = structuredClone(this.userSelected);
+    } )
   }
 
   onUserSelected(userId:number) {

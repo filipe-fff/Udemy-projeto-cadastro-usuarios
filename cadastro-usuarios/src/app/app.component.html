@@ -2,6 +2,7 @@
     <app-users-list [usersList]="usersList" (userSelectedEmitter)="onUserSelected($event)"></app-users-list>
     
     <app-user-form
+        *ngIf="userIndex"
         [userSelected]="userSelected"
         [statesList]="statesList"
         [genresList]="genresList"

@@ -105,6 +105,7 @@
                     name="senha_confirm"
                     appInvalidPasswordRepeated
                     [password]="userSelected.password"
+                    required
                 >
                 <mat-error *ngIf="passwordConfirmControl.hasError('required')">
                     A <strong>Confirmação de Senha</strong> é obrigatória.

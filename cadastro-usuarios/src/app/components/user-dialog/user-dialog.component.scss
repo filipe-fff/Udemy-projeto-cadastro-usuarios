@@ -1,11 +1,49 @@
-.infos {
-    width: 750px;
-    display: flex;
-    
+.table {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 1px 1px 8px #00000033;
+    overflow: hidden;
+
     thead {
+        padding: 20px;
+        text-align: center;
+        color: white;
         background-color: black;
+        display: flex;
+        justify-content: space-around;
+
+        h3 {
+            margin: 0px;
+        }
     }
+
     tbody {
         background-color: lightgray;
+        border: none;
     }
+
+    &__row {
+        display: flex;
+    }
+
+    &__cell-row {
+        width: 50%;
+    }
+    
+    &__cell-row:nth-child(2) {
+        border-left: 1px solid white;
+    }
+
+    &__cell {
+        padding: 10px 5px;
+    }
+
+    &__cell-header {
+        padding: 10px 5px;
+    }
+}
+
+.dialog-actions {
+    display: flex;
+    justify-content: right;
 }

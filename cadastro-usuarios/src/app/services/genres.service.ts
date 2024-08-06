@@ -8,6 +8,7 @@ import { IGenre } from '../interfaces/genre.interface';
 })
 export class GenresService {
 
+  genreDescription:string|undefined;
   private readonly genreList: IGenre[] = [
       { id: 1, description: 'Rock' },
       { id: 2, description: 'Pop' },
@@ -36,5 +37,13 @@ export class GenresService {
       observable.next(this.genreList);
       observable.complete();
     } );
+  }
+  
+  getGenreDescription(genreId:number):string|null {
+    this.getGenresList().subscribe( ( genres ) => {
+      this.genreDescription = genres.find( ( genre ) => genre.id === genreId )?.description;
+    } );
+
+    return this.genreDescription? this.genreDescription:null ;
   }
 }
